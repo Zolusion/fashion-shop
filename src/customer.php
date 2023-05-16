@@ -101,9 +101,16 @@ class Customer {
     }
 
     public function createCustomer() {
-
+        
         // Includes
         require_once '../data/connect.php';
+        
+        // Get database connection
+        $conn = getConnection();
+        if (!$conn) {
+            error_log("Failed to establish database connection");
+            return;
+        }
 
         // Variables
         $customerId = NULL;
@@ -113,13 +120,19 @@ class Customer {
         $cityName = $this->getCityName();
         $postalCode = $this->getPostalCode();
         $password = $this->getPassword();
-
+    
         // Statement 
         $sql = $conn->prepare("
             INSERT INTO customers (customerId, customerName, customerEmail, streetName, cityName, postalCode, password)
             VALUES (:customerId, :customerName, :customerEmail, :streetName, :cityName, :postalCode, :password)
         ");
 
+        // Check if prepare() returned false
+        if (!$sql) {
+            error_log("Failed to prepare SQL statement: " . $conn->errorInfo());
+            return;
+        }
+    
         // Set variables in statements
         $sql->bindParam(':customerId', $customerId);
         $sql->bindParam(':customerName', $customerName);
@@ -128,22 +141,29 @@ class Customer {
         $sql->bindParam(':cityName', $cityName);
         $sql->bindParam(':postalCode', $postalCode);
         $sql->bindParam(':password', $password);
-
+    
         // Execute statement
         $sql->execute();
 
         // Message 
-        echo "Customer created successfully";
+        echo "Customer created successfully<br>";
     }
-
+    
     public function readCustomer() {
             
         // Includes
         require_once '../data/connect.php';
 
+        // Get database connection
+        $conn = getConnection();
+        if (!$conn) {
+            error_log("Failed to establish database connection");
+            return;
+        }
+
         // Statement
         $sql = $conn->prepare("
-            SELECT * FROM customers WHERE customerId, customerName, customerEmail, streetName, cityName, postalCode, password
+            SELECT customerId, customerName, customerEmail, streetName, cityName, postalCode, password FROM customers
         ");
 
         // Execute statement
@@ -167,6 +187,13 @@ class Customer {
         // Includes
         require_once '../data/connect.php';
 
+        // Get database connection
+        $conn = getConnection();
+        if (!$conn) {
+            error_log("Failed to establish database connection");
+            return;
+        }
+
         // Variables
         $customerName = $this->getCustomerName();
         $customerEmail = $this->getCustomerEmail();
@@ -189,6 +216,11 @@ class Customer {
         $sql->bindParam(':postalCode', $postalCode);
         $sql->bindParam(':password', $password);
 
+        // Execute statement
+        if (!$sql->execute()) {
+            error_log("Failed to execute SQL statement: " . $sql->errorInfo());
+            return;
+        }
     }
 
     public function deleteCustomer($customerId) {
@@ -196,42 +228,44 @@ class Customer {
         // Includes
         require_once '../data/connect.php';
 
+        // Get database connection
+        $conn = getConnection();
+        if (!$conn) {
+            error_log("Failed to establish database connection");
+            return;
+        }
+
         // Statement
         $sql = $conn->prepare("
-            DELETE FROM customers WHERE customerId = :customerId, customerName = :customerName, customerEmail = :customerEmail, streetName = :streetName, cityName = :cityName, postalCode = :postalCode, password = :password
+            DELETE FROM customers WHERE customerId = :customerId
         ");
 
         // Set variables in statements
         $sql->bindParam(':customerId', $customerId);
-        $sql->bindParam(':customerName', $customerName);
-        $sql->bindParam(':customerEmail', $customerEmail);
-        $sql->bindParam(':streetName', $streetName);
-        $sql->bindParam(':cityName', $cityName);
-        $sql->bindParam(':postalCode', $postalCode);
-        $sql->bindParam(':password', $password);
 
         // Execute statement
         $sql->execute();
     }
 
-    public function searchCustomer() {
+    public function searchCustomer($customerId) {
 
         // Includes
         require_once '../data/connect.php';
 
+        // Get database connection
+        $conn = getConnection();
+        if (!$conn) {
+            error_log("Failed to establish database connection");
+            return;
+        }
+
         // Statement
         $sql = $conn->prepare("
-            SELECT * FROM customers WHERE customerId = :customerId, customerName = :customerName, customerEmail = :customerEmail, streetName = :streetName, cityName = :cityName, postalCode = :postalCode, password = :password
+            SELECT * FROM customers WHERE customerId = :customerId
         ");
 
         // Set variables in statements
         $sql->bindParam(':customerId', $customerId);
-        $sql->bindParam(':customerName', $customerName);
-        $sql->bindParam(':customerEmail', $customerEmail);
-        $sql->bindParam(':streetName', $streetName);
-        $sql->bindParam(':cityName', $cityName);
-        $sql->bindParam(':postalCode', $postalCode);
-        $sql->bindParam(':password', $password);
 
         // Execute statement
         $sql->execute();

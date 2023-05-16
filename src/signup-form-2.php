@@ -10,8 +10,8 @@
     <?php
 
         // Includes
-        include 'customer.php';
         include '../data/connect.php';
+        include 'customer.php';
 
         // Variables
         $customerId = NULL;
@@ -28,9 +28,9 @@
         $customer1 = new Customer($customerId, $customerName, $customerEmail, $password, $streetName, $cityName, $postalCode, $salt, $role); // This is the object that will be used to create the customer
         $customer1->createCustomer(); // This is the method that creates the customer
         $customer1->readCustomer(); // This is just to check if the customer was created
-        $customer1->updateCustomer(); // This is the method that updates the customer
-        $customer1->deleteCustomer(); // This is the method that deletes the customer
-        $customer1->searchCustomer(); // This is the method that searches for the customer
+        $customer1->updateCustomer($customerId); // This is the method that updates the customer
+        $customer1->deleteCustomer($customerId); // This is the method that deletes the customer
+        $customer1->searchCustomer($customerId); // This is the method that searches for the customer
     ?>
 </body>
 </html>
