@@ -82,25 +82,37 @@
             <input type="submit"></input>
         </div>
     </div>
-        <div class="men-text">
+        <div class="text">
             <h2>SHOP MORE FOR MEN</h2>
         </div>
         <div class="clothing-container">
             <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/files/04-27-23Studio7_CB_SS_10-25-09_48_D2436_Black_6342_CM_360x.jpg?v=1683135120" alt="hoodie">
-                <h3>CROCHET</h3>
+                <img src="https://cdn.shopify.com/s/files/1/0293/9277/files/04-27-23Studio7_CB_SS_10-25-09_48_D2436_Black_6342_CM_360x.jpg?v=1683135120" alt="crochet">
+                <div>
+                    <h3>€17,95</h3>
+                    <h3>CROCHET</h3>
+                </div>
             </div>
             <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-17-23Studio7_TA_DJ_10-34-09_21_ZDF01V31O161_Chocolate_0211_DQ_360x.jpg?v=1681943384" alt="jeans">
-                <h3>CHOCOLATE SLEEVE</h3>
+                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-17-23Studio7_TA_DJ_10-34-09_21_ZDF01V31O161_Chocolate_0211_DQ_360x.jpg?v=1681943384" alt="chocolate_sleeve">
+                <div>
+                    <h3>€19,95</h3>
+                    <h3>CHOCOLATE SLEEVE</h3>
+                </div>
             </div>
             <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-04-23CruelSummer_KJ_DJ_14-20-55_LOOK_4_5418_MP_WG_WG_PLUS_360x.jpg?v=1681967060" alt="jacket">
-                <h3>STRAP SUIT JACKET</h3>
+                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-04-23CruelSummer_KJ_DJ_14-20-55_LOOK_4_5418_MP_WG_WG_PLUS_360x.jpg?v=1681967060" alt="strapsuit-jacket">
+                <div>
+                    <h3>€29,95</h3>
+                    <h3>STRAP SUIT JACKET</h3>
+                </div>
             </div>
             <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-04-23CruelSummer_KJ_DJ_14-20-55_LOOK_5_5449_MP_WG_360x.jpg?v=1681945311" alt="shirt">
-                <h3>STRAP SUIT JACKET - LIME</h3>
+                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-04-23CruelSummer_KJ_DJ_14-20-55_LOOK_5_5449_MP_WG_360x.jpg?v=1681945311" alt="strapsuit-jacket-lime">
+                <div>
+                    <h3>€34,95</h3>
+                    <h3>STRAP SUIT JACKET LIME</h3>
+                </div>
             </div>
         </div>
     </main>
@@ -166,25 +178,37 @@
         }, 1000); // Update the timer every 1 second
     </script>
     <main>
-    <div class="women-text">
+    <div class="text">
             <h2>SHOP MORE FOR WOMEN</h2>
         </div>
-        <div class="women-clothing-container">
+        <div class="clothing-container">
             <div class="clothing-item">
-                <img src="http://localhost/fashionshop/images/high-rise-flare-jeans.jpg" alt="hoodie">
-                <h3>FAVORITE SEASON</h3>
+                <img src="http://localhost/fashionshop/images/high-rise-flare-jeans.jpg" alt="favorit-season">
+                <div>
+                    <h3>€44,95</h3>
+                    <h3>FAVORITE SEASON</h3>
+                </div>
             </div>
-            <div class="women-clothing-item">
-                <img src="http://localhost/fashionshop/images/matching-sets.jpg" alt="jeans">
-                <h3>ENDLESS LOVE</h3>
+            <div class="clothing-item">
+                <img src="http://localhost/fashionshop/images/matching-sets.jpg" alt="endless-love">
+                <div>
+                    <h3>€23,95</h3>
+                    <h3>ENDLESS LOVE</h3>
+                </div>
             </div>
-            <div class="women-clothing-item">
-                <img src="http://localhost/fashionshop/images/dresses.jpg" alt="jacket">
-                <h3>MIDNIGHT DRESS</h3>
+            <div class="clothing-item">
+                <img src="http://localhost/fashionshop/images/dresses.jpg" alt="midnight-dress">
+                <div>
+                    <h3>€19,95</h3>
+                    <h3>MIDNIGHT DRESS</h3>
+                </div>
             </div>
-            <div class="women-clothing-item">
-                <img src="http://localhost/fashionshop/images/jumpsuits.jpg" alt="shirt">
-                <h3>OCEANBREEZE</h3>
+            <div class="clothing-item">
+                <img src="http://localhost/fashionshop/images/jumpsuits.jpg" alt="oceanbreeze">
+                <div>
+                    <h3>€29,95</h3>
+                    <h3>OCEANBREEZE</h3>
+                </div>
             </div>
         </div>
     </main>
@@ -194,12 +218,6 @@
             <a href="./refund.php">Refund</a>
             <a href="./returning-package.php">Returning a package</a>
             <a href="./change-password.php">Change password</a>
-        </div>
-        <div class="categories">
-            <h3>Categories</h3>
-            <a href="./index.php">Women</a>
-            <a href="./accessoires.php">Clothing</a>
-            <a href="./accessoires.php">Accessoires</a>
         </div>
         <div class="categories">
             <h3>Policy</h3>

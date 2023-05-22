@@ -14,7 +14,7 @@
         </svg>
     </div>
     <form method="POST" action="signup-form-2.php">
-        <img src="https://neoaichan.me/assets/images/minesa-hub.png">
+        <img src="http://minesa.live/assets/images/minesa-hub.png">
         <label>Name</label>
         <input type="text" name="name" required>
         <br>

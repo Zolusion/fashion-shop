@@ -174,15 +174,10 @@ main .shop-now {
 }
 
 .search {
-    position: absolute;
-    color: white;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 80%;
-    padding: 10px;
-    padding-bottom: 10px;
-    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
 }
 
 .search input[type="text"] {
@@ -208,22 +203,13 @@ main .shop-now {
     color: white;
 }
 
-#countdown-timer {
-    position: absolute;
-    color: white;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 50%;
-}
-
 .clothing-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .clothing-container .clothing-item h3 {
@@ -235,7 +221,16 @@ main .shop-now {
     margin-bottom: 20px;
 }
 
-.men-text {
+.clothing-container .clothing-item img {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 5px solid rgb(0, 0, 0);
+}
+
+.clothing-container .clothing-item img:hover {
+    transform: scale(1.1);
+}
+
+.text {
     margin-top: 100px;
     text-align: center;
     font-size: 2rem;
@@ -244,27 +239,23 @@ main .shop-now {
     letter-spacing: 2px;
 }
 
-.men-text h2 {
+.text h2 {
     font-size: 2rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-/* Countdown timer container */
 #countdown-timer {
     text-align: center;
     margin-top: 50px;
 }
 
-/* Timer heading */
 #countdown-timer h2 {
     font-size: 24px;
     color: #333;
-    margin-top: 130vw;
 }
 
-/* Timer display */
 #timer {
     display: flex;
     justify-content: center;
@@ -272,7 +263,6 @@ main .shop-now {
     margin-top: 20px;
 }
 
-/* Timer elements */
 #timer div {
     margin: 0 10px;
     font-size: 48px;
@@ -282,45 +272,12 @@ main .shop-now {
     padding: 10px 20px;
 }
 
-/* Timer element labels */
 #timer div:before {
     content: attr(id);
     display: block;
     font-size: 12px;
     color: #666;
     margin-bottom: 5px;
-}
-
-.women-text {
-    margin-top: 300px;
-    text-align: center;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.women-text h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.women-clothing-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 50px;
-}
-
-.women-clothing-container h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-align: center;
-    margin-bottom: 70px;
 }
 
 footer {
@@ -349,4 +306,146 @@ footer .categories a {
     margin-right: 1rem;
     display: flex;
     margin: 0.5rem 0;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #f2f2f2;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar {
+    width: 20%;
+    margin-right: 2rem;
+    padding: 2rem;
+    width: 20%;
+    height: 100%;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.sidebar h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+#piechart {
+    position: absolute;
+    margin-top: -24rem;
+    margin-left: 20rem;
+    width: 30%;
+}
+
+.note {
+    position: absolute;
+    margin-top: -24rem;
+    margin-left: 66rem;
+    width: 30%;
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+.home {
+    position: absolute;
+    margin-top: -8.5rem;
+    margin-left: 66rem;
+    width: 30%;
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+.goals {
+    position: absolute;
+    margin-top: -3.5rem;
+    margin-left: 20rem;
+    width: 30%;
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+.goals h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.goals ul {
+    list-style: none;
+    padding: 0;
+}
+
+.goals ul li {
+    margin-bottom: 0.5rem;
+}
+
+.create {
+    text-align: center;
+    margin-top: 50px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+form input[type="text"] {
+    width: 70%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: none;
+}
+
+form input[type="decimal"] {
+    width: 70%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: none;
+}
+
+form input[type="submit"] {
+    width: 70%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: black;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
 }

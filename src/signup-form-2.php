@@ -13,24 +13,22 @@
         include '../data/connect.php';
         include 'customer.php';
 
-        // Variables
-        $customerId = NULL;
-        $customerName = $_POST['name'];
-        $customerEmail = $_POST['email'];
-        $password = $_POST['password'];
-        $streetName = $_POST['streetname'];
-        $cityName = $_POST['city'];
-        $postalCode = $_POST['postalcode'];
-        $salt = NULL;
-        $role = NULL;
+        if($_SERVER["REQUEST_METHOD"] == "POSTS") {
+            // Variables
+            $customerEmail = $_POST['email'];
+            $password = $_POST['password'];
 
-        // Object
-        $customer1 = new Customer($customerId, $customerName, $customerEmail, $password, $streetName, $cityName, $postalCode, $salt, $role); // This is the object that will be used to create the customer
-        $customer1->createCustomer(); // This is the method that creates the customer
-        $customer1->readCustomer(); // This is just to check if the customer was created
-        $customer1->updateCustomer($customerId); // This is the method that updates the customer
-        $customer1->deleteCustomer($customerId); // This is the method that deletes the customer
-        $customer1->searchCustomer($customerId); // This is the method that searches for the customer
+            // Object
+            $customer1 = new Customer(NULL, NULL, $customerEmail, NULL, NULL, NULL, $password, NULL, NULL );
+            $customer1->searchCustomerByEmail($customerEmail);
+
+            // Check if customer exists and verify password
+            if ($customer1->getCustomerName() != NULL && password_verify($password, $customer1->getPassword())) {
+                echo "Login successful! Welcome, " . $customer1->getCustomerName();
+            } else {
+                echo "Login failed. Invalid email or password.";
+            }
+        }
     ?>
 </body>
 </html>
