@@ -33,46 +33,54 @@
     <title>Admin dashboard</title>
 </head>
 <body>
-    <div class="dashboard">
-        <h2>Welcome to admin dashboard</h2>
-    </div>
-    <div class="sidebar">
-        <h2>NINETY'S NATION</h2>
-        <h3>Manage product</h3>
-        <ul>
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="create-product.php">Create product</a></li>
-            <li><a href="read-product.php">Read product</a></li>
-            <li><a href="update-product.php">Update product</a></li>
-            <li><a href="delete-product.php">Delete product</a></li>
-            <li><a href="view_order.php">View order</a></li>
-            <li><a href="view_user.php">View user</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
-    </div>
-    <div id="piechart" style="width: 700px; height: 300px;"></div>
-    <div class="note">
-        <h2>NOTE: </h2>
-        <p>
-            This website is a project that is made by a group of 3 students 
-            from Techniek College Rotterdam. The purpose of this website is
-            to sell clothes online. The website is not real and the products
-            are not real. The website is made for educational purposes only.
-        </p>
-    </div>
-    <div class="home">
-        <p>Go back to <a href="../src/index.php">homepage</a></p>
-    </div>
-    <div class="goals">
-        <h2>Our mission</h2>
-        <ul>
-            <li>A Working database</li>
-            <li>Trying to make an account</li>
-            <li>Trying to login with the user account</li>
-            <li>Searching for products</li>
-            <li>Adding products to the shopping cart</li>
-            <li>CRUD+S system</li>
-        </ul>
-    </div>
+        <div class="dashboard">
+            <h2>Welcome to admin dashboard</h2>
+        </div>
+        <div class="sidebar">
+            <h2>NINETY'S NATION</h2>
+            <ul>
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <h3>Manage product</h3>
+                <li><a href="create-product.php">Create product</a></li>
+                <li><a href="read-product.php">Read product</a></li>
+                <li><a href="update-product.php">Update product</a></li>
+                <li><a href="delete-product.php">Delete product</a></li>
+                <h3>Orders</h3>
+                <li><a href="view_order.php">View order</a></li>
+                <h3>Manage customers</h3>
+                <li><a href="create-customer.php">Create customer</a></li>
+                <li><a href="read-customer.php">Read customer</a></li>
+                <li><a href="update-customer.php">Update customer</a></li>
+                <li><a href="delete-customer.php">Delete customer</a></li>
+                <h3>Logout</h3>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+        <div class="dashboard-container">
+            <div id="piechart" style="width: 700px; height: 300px;"></div>
+            <div class="note">
+                <h2>NOTE: </h2>
+                <p>
+                    This website is a project that is made by a group of 3 students 
+                    from Techniek College Rotterdam. The purpose of this website is
+                    to sell clothes online. The website is not real and the products
+                    are not real. The website is made for educational purposes only.
+                </p>
+            </div>
+            <div class="home">
+                <p>Go back to <a href="../src/index.php">homepage</a></p>
+            </div>
+            <div class="goals">
+                <h2>Our mission</h2>
+                <ul>
+                    <li>A Working database</li>
+                    <li>Trying to make an account</li>
+                    <li>Trying to login with the user account</li>
+                    <li>Searching for products</li>
+                    <li>Adding products to the shopping cart</li>
+                    <li>CRUD+S system</li>
+                </ul>
+            </div>
+        </div>
 </body>
 </html>

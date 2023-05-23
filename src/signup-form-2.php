@@ -18,6 +18,12 @@
 
         $customer = new Customer($customerEmail, $password);
         $customer->signup($conn);
+
+        // Print the result
+        echo "Customer is logged in successfully! </br>";
+        $customer->printCustomer();
+
+        echo '<a href="./index.php">Go back to home page</a>';
     ?>
 </body>
 </html>

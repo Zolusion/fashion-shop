@@ -308,6 +308,10 @@ footer .categories a {
     margin: 0.5rem 0;
 }
 
+.dashboard-container {
+    margin-top: -14rem;
+}
+
 .dashboard {
     display: flex;
     justify-content: center;
