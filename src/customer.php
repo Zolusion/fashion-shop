@@ -107,6 +107,7 @@ class Customer {
         
         // Get database connection
         $conn = getConnection();
+        // $wachtwoordHash = password_hash($wachtwoord, PASSWORD_DEFAULT);
         if (!$conn) {
             error_log("Failed to establish database connection");
             return;

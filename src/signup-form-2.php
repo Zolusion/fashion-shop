@@ -13,22 +13,11 @@
         include '../data/connect.php';
         include 'customer.php';
 
-        if($_SERVER["REQUEST_METHOD"] == "POSTS") {
-            // Variables
-            $customerEmail = $_POST['email'];
-            $password = $_POST['password'];
+        $customerEmail=$_POST['email'];
+        $password=$_POST['password'];
 
-            // Object
-            $customer1 = new Customer(NULL, NULL, $customerEmail, NULL, NULL, NULL, $password, NULL, NULL );
-            $customer1->searchCustomerByEmail($customerEmail);
-
-            // Check if customer exists and verify password
-            if ($customer1->getCustomerName() != NULL && password_verify($password, $customer1->getPassword())) {
-                echo "Login successful! Welcome, " . $customer1->getCustomerName();
-            } else {
-                echo "Login failed. Invalid email or password.";
-            }
-        }
+        $customer = new Customer($customerEmail, $password);
+        $customer->signup($conn);
     ?>
 </body>
 </html>
