@@ -48,6 +48,7 @@
                 echo "<input type='submit' name='submit' value='Create Product'>";
                 echo "</form>";
 
+                // Create product
                 if(isset($_POST['submit'])) {
                     $productName = $_POST['productName'];
                     $image = $_POST['image'];
@@ -57,8 +58,10 @@
                     $maxQuantity = $_POST['maxQuantity'];
                     $productAmount = $_POST['productAmount'];
 
+                    // Insert product
                     $sql = "INSERT INTO products (productName, image, productPrice, productDescription, minimumQuantity, maximumQuantity, amount) VALUES ('$productName', '$image', '$productPrice', '$productDescription', '$minQuantity', '$maxQuantity', '$productAmount')";
 
+                    // Check if product created successfully
                     if($this->conn->query($sql) === TRUE) {
                         echo "<script>alert('Product created successfully!')</script>";
                     } else {
@@ -73,6 +76,7 @@
             }
         }
 
+        // Create product
         $create = new Create("localhost", "root", "", "fashion-shop");
         $create->createProduct();
     ?>

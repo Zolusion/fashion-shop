@@ -43,8 +43,10 @@
                         "amount" => $row['amount'],
                         
                     );
+                    // Push product to products array
                     $products[] = $product;
                 }
+                // Return products array
                 return $products;
             }
         }

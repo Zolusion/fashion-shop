@@ -1,3 +1,6 @@
+<?php
+    // echo "<pre>".print_r($_POST, true)."</pre>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +19,7 @@
         $customerEmail = $_POST['email'];
         $password = $_POST['password'];
 
-        $customer1 = new Customer($customerEmail, $password);
+        $customer1 = new Customer(NULL, $customerEmail, $password);
         $customer1->signup();
 
         echo "This customer is signed up! <br>";

@@ -34,7 +34,7 @@
         $sql = "SELECT * FROM products";
         $result = mysqli_query($this->conn, $sql);
         $products = array();
-        
+
         // Loop through all products
         while ($row = mysqli_fetch_array($result)) {
             $product = array(
@@ -66,6 +66,7 @@
     // Display all products
     function displayToUpdateProductTable()
     {
+        // Get all products
         $products = $this->db->getAllProducts();
         echo "<table class='table table-striped table-hover'>
                 <thead>
