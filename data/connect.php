@@ -8,15 +8,12 @@ function getConnection() {
     $password = "";
     $database = "fashion-shop";
 
-    // Create connection
-    $conn = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-
-    // Check connection
-    if (!$conn) {
-        error_log("Failed to establish database connection");
-        return;
+    try {
+        $conn = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        // echo "Connected successfully";  
     }
-
-    return $conn;
+    catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
 
 }

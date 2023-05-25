@@ -91,6 +91,7 @@
                 <div>
                     <h3>€17,95</h3>
                     <h3>CROCHET</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
             <div class="clothing-item">
@@ -98,6 +99,7 @@
                 <div>
                     <h3>€19,95</h3>
                     <h3>CHOCOLATE SLEEVE</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
             <div class="clothing-item">
@@ -105,6 +107,7 @@
                 <div>
                     <h3>€29,95</h3>
                     <h3>STRAP SUIT JACKET</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
             <div class="clothing-item">
@@ -112,6 +115,7 @@
                 <div>
                     <h3>€34,95</h3>
                     <h3>STRAP SUIT JACKET LIME</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
         </div>
@@ -187,6 +191,7 @@
                 <div>
                     <h3>€44,95</h3>
                     <h3>FAVORITE SEASON</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
             <div class="clothing-item">
@@ -194,6 +199,7 @@
                 <div>
                     <h3>€23,95</h3>
                     <h3>ENDLESS LOVE</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
             <div class="clothing-item">
@@ -201,6 +207,7 @@
                 <div>
                     <h3>€19,95</h3>
                     <h3>MIDNIGHT DRESS</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
             <div class="clothing-item">
@@ -208,6 +215,7 @@
                 <div>
                     <h3>€29,95</h3>
                     <h3>OCEANBREEZE</h3>
+                    <button type="submit">Add To Cart</button>
                 </div>
             </div>
         </div>

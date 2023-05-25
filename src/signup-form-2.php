@@ -13,17 +13,16 @@
         include '../data/connect.php';
         include 'customer.php';
 
-        $customerEmail=$_POST['email'];
-        $password=$_POST['password'];
+        $customerEmail = $_POST['email'];
+        $password = $_POST['password'];
 
-        $customer = new Customer($customerEmail, $password);
-        $customer->signup($conn);
+        $customer1 = new Customer($customerEmail, $password);
+        $customer1->signup();
 
-        // Print the result
-        echo "Customer is logged in successfully! </br>";
-        $customer->printCustomer();
+        echo "This customer is signed up! <br>";
+        $customer1->printCustomer();
 
-        echo '<a href="./index.php">Go back to home page</a>';
+        echo "<br><br><a href='index.php'>Back to homepage</a>";
     ?>
 </body>
 </html>

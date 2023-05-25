@@ -6,24 +6,22 @@ class Customer {
     protected $customerId;
     protected $customerName;
     protected $customerEmail;
+    protected $password;
     protected $streetName;
     protected $cityName;
     protected $postalCode;
-    protected $password;
     protected $salt;
     protected $role;
 
     // Methods
-    public function __construct($customerId, $customerName, $customerEmail, $streetName, $cityName, $postalCode, $password, $salt, $role) {
+    public function __construct($customerId, $customerName, $customerEmail, $password, $streetName, $cityName, $postalCode) {
         $this->customerId = $customerId;
         $this->customerName = $customerName;
         $this->customerEmail = $customerEmail;
+        $this->password = $password;
         $this->streetName = $streetName;
         $this->cityName = $cityName;
         $this->postalCode = $postalCode;
-        $this->password = $password;
-        $this->salt = $salt;
-        $this->role = $role;
     }
 
     // Setters
@@ -39,6 +37,10 @@ class Customer {
         $this->customerEmail = $customerEmail;
     }
 
+    public function setPassword($password) {
+        $this->password = $password;
+    }
+
     public function setStreetName($streetName) {
         $this->streetName = $streetName;
     }
@@ -49,10 +51,6 @@ class Customer {
 
     public function setPostalCode($postalCode) {
         $this->postalCode = $postalCode;
-    }
-
-    public function setPassword($password) {
-        $this->password = $password;
     }
 
     public function setSalt($salt) {
@@ -76,6 +74,10 @@ class Customer {
         return $this->customerEmail;
     }
 
+    public function getPassword() {
+        return $this->password;
+    }
+
     public function getStreetName() {
         return $this->streetName;
     }
@@ -86,10 +88,6 @@ class Customer {
 
     public function getPostalCode() {
         return $this->postalCode;
-    }
-
-    public function getPassword() {
-        return $this->password;
     }
 
     public function getSalt() {
@@ -107,25 +105,26 @@ class Customer {
         
         // Get database connection
         $conn = getConnection();
-        // $wachtwoordHash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+        $passwordHash = password_hash($wachtwoord, PASSWORD_DEFAULT);
         if (!$conn) {
             error_log("Failed to establish database connection");
             return;
         }
 
         // Variables
-        $customerId = NULL;
+        $customerId = $this->getCustomerId();
         $customerName = $this->getCustomerName();
         $customerEmail = $this->getCustomerEmail();
+        $password = $this->getPassword();
         $streetName = $this->getStreetName();
         $cityName = $this->getCityName();
         $postalCode = $this->getPostalCode();
-        $password = $this->getPassword();
+
     
         // Statement 
         $sql = $conn->prepare("
-            INSERT INTO customers (customerId, customerName, customerEmail, streetName, cityName, postalCode, password)
-            VALUES (:customerId, :customerName, :customerEmail, :streetName, :cityName, :postalCode, :password)
+            INSERT INTO customers (customerId, customerName, customerEmail, password, streetName, cityName, postalCode)
+            VALUES (:customerId, :customerName, :customerEmail, :password, :streetName, :cityName, :postalCode)
         ");
 
         // Check if prepare() returned false
@@ -138,10 +137,10 @@ class Customer {
         $sql->bindParam(':customerId', $customerId);
         $sql->bindParam(':customerName', $customerName);
         $sql->bindParam(':customerEmail', $customerEmail);
+        $sql->bindParam(':password', $password);
         $sql->bindParam(':streetName', $streetName);
         $sql->bindParam(':cityName', $cityName);
         $sql->bindParam(':postalCode', $postalCode);
-        $sql->bindParam(':password', $password);
     
         // Execute statement
         $sql->execute();
@@ -175,10 +174,11 @@ class Customer {
             echo $customer["customerId"]. " - ";
             echo $customer["customerName"]. " - ";
             echo $customer["customerEmail"]. " - ";
+            echo $customer["password"]. " - ";
             echo $customer["streetName"]. " - ";
             echo $customer["cityName"]. " - ";
             echo $customer["postalCode"]. " - ";
-            echo $customer["password"]. " - ";
+
             echo "<br>";
         }
     }
@@ -196,26 +196,27 @@ class Customer {
         }
 
         // Variables
+        $customerId = $this->getCustomerId();
         $customerName = $this->getCustomerName();
         $customerEmail = $this->getCustomerEmail();
+        $password = $this->getPassword();
         $streetName = $this->getStreetName();
         $cityName = $this->getCityName();
         $postalCode = $this->getPostalCode();
-        $password = $this->getPassword();
 
         // Statement
         $sql = $conn->prepare("
-            UPDATE customers SET customerName = :customerName, customerEmail = :customerEmail, streetName = :streetName, cityName = :cityName, postalCode = :postalCode, password = :password WHERE customerId = :customerId
+            UPDATE customers SET customerName = :customerName, customerEmail = :customerEmail, password = :password, streetName = :streetName, cityName = :cityName, postalCode = :postalCode WHERE customerId = :customerId
         ");
 
         // Set variables in statements
         $sql->bindParam(':customerId', $customerId);
         $sql->bindParam(':customerName', $customerName);
         $sql->bindParam(':customerEmail', $customerEmail);
+        $sql->bindParam(':password', $password);
         $sql->bindParam(':streetName', $streetName);
         $sql->bindParam(':cityName', $cityName);
         $sql->bindParam(':postalCode', $postalCode);
-        $sql->bindParam(':password', $password);
 
         // Execute statement
         if (!$sql->execute()) {
@@ -274,12 +275,12 @@ class Customer {
         // Object 
         foreach($sql as $customer)
         {
-            $this->customerName = $customer["customerName"];
-            $this->customerEmail = $customer["customerEmail"];
-            $this->streetName = $customer["streetName"];
-            $this->cityName = $customer["cityName"];
-            $this->postalCode = $customer["postalCode"];
+            $this->customerName = $customer["name"];
+            $this->customerEmail = $customer["email"];
             $this->password = $customer["password"];
+            $this->streetName = $customer["streetname"];
+            $this->cityName = $customer["city"];
+            $this->postalCode = $customer["postalCode"];
         }
     }
 }

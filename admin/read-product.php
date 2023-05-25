@@ -13,8 +13,11 @@
     </div>
     <?php
         class Database {
+
+            // Properties
             private $conn;
 
+            // Methods
             function __construct($servername, $username, $password, $dbname) {
                 $this->conn = mysqli_connect($servername, $username, $password, $dbname);
                 if (!$this->conn) {
@@ -22,10 +25,13 @@
                 }
             }
 
+            // Get all products
             function getAllProducts() {
                 $sql = "SELECT * FROM products";
                 $result = mysqli_query($this->conn, $sql);
                 $products = array();
+
+                // Fetch one and one row
                 while ($row = mysqli_fetch_array($result)) {
                     $product = array(
                         "productName" => $row['productName'],
@@ -43,14 +49,21 @@
             }
         }
 
+        // Display table
         class ProductTable {
+
+            // Properties
             private $db;
 
+            // Methods
             function __construct($servername, $username, $password, $dbname) {
                 $this->db = new Database($servername, $username, $password, $dbname);
             }
 
+            // Display table
             function displayTable() {
+
+                // Get all products
                 $products = $this->db->getAllProducts();
                 echo "<table class='table table-striped table-hover'>
                     <thead>
@@ -65,6 +78,8 @@
                         </tr>
                     </thead>
                     <tbody>";
+
+                // Display products
                 foreach ($products as $product) {
                     echo "<tr>";
                     echo "<td>" . $product['productName'] . "</td>";
@@ -81,6 +96,7 @@
             }
         }
 
+        // Create table object and display table
         $productTable = new ProductTable("localhost", "root", "", "fashion-shop");
         $productTable->displayTable();
     ?>

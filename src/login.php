@@ -16,10 +16,10 @@
     <form method="POST" action="login-form-2.php">
         <img src="http://minesa.live/assets/images/minesa-hub.png">
         <label>Email</label>
-        <input type="email" name="email" required>
+        <input type="email" id="email" name="email" required>
         <br>
         <label>Password</label>
-        <input type="password" name="password" required>
+        <input type="password" id="password" name="password" required>
         <br>
         <input type="submit" name="submit" value="Login">
         <p>Don't have an account yet? <a href="signup.php">Signup here</a>.</p>

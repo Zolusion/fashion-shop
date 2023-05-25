@@ -8,7 +8,18 @@
 </head>
 <body>
     <?php
+            
+            // Includes
+            include '../data/connect.php';
+            include 'customer.php';
+    
+            $customerEmail = $_POST['customerEmail'];
+            $password = $_POST['password'];
 
+            $customer1 = new Customer($customerEmail, $password);
+            $customer1->login();
+
+            echo "<br><br><a href='index.php'>Back to homepage</a>"
     ?>
 </body>
 </html>
