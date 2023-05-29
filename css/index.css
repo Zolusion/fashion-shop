@@ -473,3 +473,14 @@ form input[type="submit"] {
     cursor: pointer;
     margin-top: 20px;
 }
+
+form input[type="number"] {
+    width: 70%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: none;
+}

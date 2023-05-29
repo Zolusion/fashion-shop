@@ -42,10 +42,12 @@
                 echo "<input type='text' name='image' placeholder='Image' required>";
                 echo "<input type='decimal' name='productPrice' placeholder='Price' required>";
                 echo "<input type='text' name='productDescription' placeholder='Description' required>";
-                echo "<input type='text' name='minQuantity' placeholder='Minimum Quantity' required>";
-                echo "<input type='text' name='maxQuantity' placeholder='Maximum Quantity' required>";
-                echo "<input type='text' name='productAmount' placeholder='Amount' required>";
+                echo "<input type='number' name='minQuantity' placeholder='Minimum Quantity' required>";
+                echo "<input type='number' name='maxQuantity' placeholder='Maximum Quantity' required>";
+                echo "<input type='number' name='productAmount' placeholder='Amount' required>";
                 echo "<input type='submit' name='submit' value='Create Product'>";
+                echo "<br>";
+                echo "<a href='dashboard.php'>Back to dashboard</a>";
                 echo "</form>";
 
                 // Create product

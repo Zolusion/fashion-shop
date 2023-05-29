@@ -14,7 +14,6 @@ class Customer {
     protected $role;
 
     // Methods
-    // public function __construct($customerId="", $customerName="", $customerEmail, $password, $streetName="", $cityName="", $postalCode="") {
         public function __construct($customerId="", $customerName="", $customerEmail="") {
         $this->customerId = $customerId;
         $this->customerName = $customerName;
@@ -100,84 +99,17 @@ class Customer {
     }
 
     public function signup() {
-
-        // // Includes
-        // require_once '../data/connect.php';
-
-        // // Get database connection
-        // $conn = getConnection();
-        // if (!$conn) {
-        //     error_log("Failed to establish database connection");
-        //     return;
-        // }
-
-        // // Variables
-        // $customerEmail = $this->getCustomerEmail();
-        // $password = $this->getPassword();
-        // $salt = $this->getSalt();
-        // $role = $this->getRole();
-
-        // // Statement
-        // $sql = $conn->prepare("
-        //     INSERT INTO customers (customerEmail, password, salt, role)
-        //     VALUES (:customerEmail, :password, :salt, :role)
-        // ");
-
-        // // Check if prepare() returned false
-        // if (!$sql) {
-        //     error_log("Failed to prepare SQL statement: " . $conn->errorInfo());
-        //     return;
-        // }
-
-        // // Set variables in statements
-        // $sql->bindParam(':customerEmail', $customerEmail);
-        // $sql->bindParam(':password', $password);
-        // $sql->bindParam(':salt', $salt);
-        // $sql->bindParam(':role', $role);
-
-        // // Execute statement
-        // $sql->execute();
-
-        // // Message 
-        // echo "Customer created successfully<br>";
-
+        $this->createCustomer();
     }
 
     public function printCustomer() {
-
-        // // Includes
-        // require_once '../data/connect.php';
-
-        // // Get database connection
-        // $conn = getConnection();
-        // if (!$conn) {
-        //     error_log("Failed to establish database connection");
-        //     return;
-        // }
-
-        // // Variables
-        // $customerEmail = $this->getCustomerEmail();
-
-        // // Statement
-        // $sql = $conn->prepare("
-        //     SELECT * FROM customers WHERE customerEmail = :customerEmail
-        // ");
-
-        // // Check if prepare() returned false
-        // if (!$sql) {
-        //     error_log("Failed to prepare SQL statement: " . $conn->errorInfo());
-        //     return;
-        // }
-
-        // // Set variables in statements
-        // $sql->bindParam(':customerEmail', $customerEmail);
-
-        // // Execute statement
-        // $sql->execute();
-
-        // // Fetch result
-        // $result = $sql->fetch();
-
+        echo "Customer ID: " . $this->getCustomerId() . "<br>";
+        echo "Customer Name: " . $this->getCustomerName() . "<br>";
+        echo "Customer Email: " . $this->getCustomerEmail() . "<br>";
+        echo "Password: " . $this->getPassword() . "<br>";
+        echo "Street Name: " . $this->getStreetName() . "<br>";
+        echo "City Name: " . $this->getCityName() . "<br>";
+        echo "Postal Code: " . $this->getPostalCode() . "<br>";
     }
 
     public function createCustomer() {
@@ -187,7 +119,7 @@ class Customer {
         
         // Get database connection
         $conn = getConnection();
-        $passwordHash = password_hash($wachtwoord, PASSWORD_DEFAULT);
+        $passwordHash = password_hash($this->getPassword(), PASSWORD_DEFAULT);
         if (!$conn) {
             error_log("Failed to establish database connection");
             return;

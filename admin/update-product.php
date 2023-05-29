@@ -13,97 +13,163 @@
     </div>
     
     <?php
-
-    class Update {
-    
-    // Database connection
-    private $conn;
-
-    // Constructor
-    function __construct($servername, $username, $password, $dbname)
-    {
-        $this->conn = mysqli_connect($servername, $username, $password, $dbname);
-        if (!$this->conn) {
-            die("Connection failed: " . mysqli_connect_error());
+        
+        class Database
+        {
+            private $conn;
+        
+            public function __construct($servername, $username, $password, $dbname)
+            {
+                $this->conn = new mysqli($servername, $username, $password, $dbname);
+                if ($this->conn->connect_error) {
+                    die("Connection failed: " . $this->conn->connect_error);
+                }
+            }
+        
+            public function getAllProducts()
+            {
+                $sql = "SELECT * FROM products";
+                $result = $this->conn->query($sql);
+                $products = array();
+        
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $products[] = $row;
+                    }
+                }
+        
+                return $products;
+            }
+        
+            public function updateProduct($productName, $data)
+            {
+                $updates = array();
+                foreach ($data as $key => $value) {
+                    $updates[] = "$key='$value'";
+                }
+                $updates = implode(", ", $updates);
+        
+                $sql = "UPDATE products SET $updates WHERE productName='$productName'";
+        
+                if ($this->conn->query($sql) === TRUE) {
+                    return true;
+                } else {
+                    return "Error updating product: " . $this->conn->error;
+                }
+            }
+        
+            public function closeConnection()
+            {
+                $this->conn->close();
+            }
         }
-    }
+        
+        class UpdateTable {
+            public $db;
 
-    // Get all products
-    function getAllProducts()
-    {
-        $sql = "SELECT * FROM products";
-        $result = mysqli_query($this->conn, $sql);
-        $products = array();
+            public function __construct($servername, $username, $password, $dbname)
+            {
+                $this->db = new Database($servername, $username, $password, $dbname);
+            }
 
-        // Loop through all products
-        while ($row = mysqli_fetch_array($result)) {
-            $product = array(
-                "productName" => $row['productName'],
-                "image" => $row['image'],
-                "productPrice" => $row['productPrice'],
-                "productDescription" => $row['productDescription'],
-                "minimumQuantity" => $row['minimumQuantity'],
-                "maximumQuantity" => $row['maximumQuantity'],
-                "amount" => $row['amount'],
-            );
-            $products[] = $product;
+            public function displayToUpdateProductTable()
+            {
+                $products = $this->db->getAllProducts();
+
+                if (empty($products)) {
+                    echo "No products found.";
+                    return;
+                }
+
+                echo "<table class='table table-striped table-hover'>
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Image</th>
+                                <th>Product Price</th>
+                                <th>Product Description</th>
+                                <th>Minimum Quantity</th>
+                                <th>Maximum Quantity</th>
+                                <th>Amount</th>
+                                <th>Action</th> 
+                            </tr>
+                        </thead>
+                        <tbody>";
+
+                foreach ($products as $product) {
+                    echo "<tr>";
+                    echo "<td>" . $product['productName'] . "</td>";
+                    echo "<td>" . $product['image'] . "</td>";
+                    echo "<td>" . $product['productPrice'] . "</td>";
+                    echo "<td>" . $product['productDescription'] . "</td>";
+                    echo "<td>" . $product['minimumQuantity'] . "</td>";
+                    echo "<td>" . $product['maximumQuantity'] . "</td>";
+                    echo "<td>" . $product['amount'] . "</td>";
+                    echo "<td><a href='update-product.php?productName=" . $product['productName'] . "'>Update</a></td>";
+                    echo "</tr>";
+                }
+
+                echo "</tbody>
+                    </table>";
+            }
+
+            public function updateProduct($productName, $data)
+            {
+                $result = $this->db->updateProduct($productName, $data);
+
+                if ($result === true) {
+                    echo "Product updated successfully.";
+                } else {
+                    echo $result;
+                }
+            }
         }
-        return $products;
-    }
-}
 
-    class UpdateTable {
-    
-    // Database connection
-    private $db;
+        // Update product page
+        if (isset($_GET['productName'])) {
+            $productName = $_GET['productName'];
+            $updateTable = new UpdateTable("localhost", "root", "", "fashion-shop");
 
-    // Constructor
-    function __construct($servername, $username, $password, $dbname)
-    {
-        $this->db = new Update($servername, $username, $password, $dbname);
-    }
+            if (isset($_POST['submit'])) {
+                $data = array(
+                    "productName" => $_POST['productName'], 
+                    "image" => $_POST['image'],
+                    "productPrice" => $_POST['productPrice'],
+                    "productDescription" => $_POST['productDescription'],
+                    "minimumQuantity" => $_POST['minQuantity'],
+                    "maximumQuantity" => $_POST['maxQuantity'],
+                    "amount" => $_POST['amount']
+                );
 
-    // Display all products
-    function displayToUpdateProductTable()
-    {
-        // Get all products
-        $products = $this->db->getAllProducts();
-        echo "<table class='table table-striped table-hover'>
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Image</th>
-                        <th>Product Price</th>
-                        <th>Product Description</th>
-                        <th>Minimum Quantity</th>
-                        <th>Maximum Quantity</th>
-                        <th>Amount</th>
-                        <th>Action</th> 
-                    </tr>
-                </thead>
-                <tbody>";
+                $updateTable->updateProduct($productName, $data);
+            }
 
-        // Loop through all products
-        foreach ($products as $product) {
-            echo "<tr>";
-            echo "<td>" . $product['productName'] . "</td>";
-            echo "<td>" . $product['image'] . "</td>";
-            echo "<td>" . $product['productPrice'] . "</td>";
-            echo "<td>" . $product['productDescription'] . "</td>";
-            echo "<td>" . $product['minimumQuantity'] . "</td>";
-            echo "<td>" . $product['maximumQuantity'] . "</td>";
-            echo "<td>" . $product['amount'] . "</td>";
-            echo "<td><a href='update-product.php?productName=" . $product['productName'] . "'>Update</a></td>";
-            echo "</tr>";
+            // Fetch product details
+            $productDetails = $updateTable->db->getAllProducts($productName);
+
+            if ($productDetails) {
+                echo "<form action='update-product.php?productName=" . $productName . "' method='POST'>";
+                echo "<input type='hidden' name='productName' value='" . $productName . "'>";
+                echo "<input type='text' name='image' value='" . $productDetails[0]['image'] . "'><br>";
+                echo "<input type='text' name='productPrice' value='" . $productDetails[0]['productPrice'] . "'><br>";
+                echo "<input type='text' name='productDescription' value='" . $productDetails[0]['productDescription'] . "'><br>";
+                echo "<input type='text' name='minQuantity' value='" . $productDetails[0]['minimumQuantity'] . "'><br>";
+                echo "<input type='text' name='maxQuantity' value='" . $productDetails[0]['maximumQuantity'] . "'><br>";
+                echo "<input type='text' name='amount' value='" . $productDetails[0]['amount'] . "'><br>";
+                echo "</form>";
+            } else {
+                echo "Product not found.";
+            }
+
+            $updateTable->db->closeConnection();
+        } else {
+            // Display product table
+            $updateTable = new UpdateTable("localhost", "root", "", "fashion-shop");
+            $updateTable->displayToUpdateProductTable();
+            $updateTable->db->closeConnection();
         }
-        echo "</tbody>
-            </table>";
-    }
-}
-        // Includes
-        $updateTable = new UpdateTable("localhost", "root", "", "fashion-shop");
-        $updateTable->displayToUpdateProductTable();
-?>
+        
+    ?>
 
 </body>
 </html>
