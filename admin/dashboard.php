@@ -46,7 +46,7 @@
                 <li><a href="update-product.php">Update product</a></li>
                 <li><a href="delete-product.php">Delete product</a></li>
                 <h3>Orders</h3>
-                <li><a href="view_order.php">View order</a></li>
+                <li><a href="view-order.php">View order</a></li>
                 <h3>Manage customers</h3>
                 <li><a href="create-customer.php">Create customer</a></li>
                 <li><a href="read-customer.php">Read customer</a></li>

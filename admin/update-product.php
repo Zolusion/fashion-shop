@@ -10,14 +10,17 @@
 <body>
     <div class="create">
         <h2>Update Product</h2>
+        <br>
     </div>
     
     <?php
         
         class Database
         {
+            // Properties
             private $conn;
         
+            // Methods
             public function __construct($servername, $username, $password, $dbname)
             {
                 $this->conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,6 +29,7 @@
                 }
             }
         
+            // Get all products
             public function getAllProducts()
             {
                 $sql = "SELECT * FROM products";
@@ -41,6 +45,7 @@
                 return $products;
             }
         
+            // Delete product
             public function updateProduct($productName, $data)
             {
                 $updates = array();
@@ -58,20 +63,26 @@
                 }
             }
         
+            // Close connection
             public function closeConnection()
             {
                 $this->conn->close();
             }
         }
         
+        // Create table
         class UpdateTable {
+
+            // Properties
             public $db;
 
+            // Methods
             public function __construct($servername, $username, $password, $dbname)
             {
                 $this->db = new Database($servername, $username, $password, $dbname);
             }
 
+            // Display table
             public function displayToUpdateProductTable()
             {
                 $products = $this->db->getAllProducts();
@@ -81,6 +92,7 @@
                     return;
                 }
 
+                // Display table
                 echo "<table class='table table-striped table-hover'>
                         <thead>
                             <tr>
@@ -96,6 +108,7 @@
                         </thead>
                         <tbody>";
 
+                // Display products
                 foreach ($products as $product) {
                     echo "<tr>";
                     echo "<td>" . $product['productName'] . "</td>";
@@ -113,6 +126,7 @@
                     </table>";
             }
 
+            // Update product
             public function updateProduct($productName, $data)
             {
                 $result = $this->db->updateProduct($productName, $data);
@@ -147,20 +161,23 @@
             // Fetch product details
             $productDetails = $updateTable->db->getAllProducts($productName);
 
+            // Display form
             if ($productDetails) {
                 echo "<form action='update-product.php?productName=" . $productName . "' method='POST'>";
-                echo "<input type='hidden' name='productName' value='" . $productName . "'>";
+                echo "<input type='text' name='productName' value='" . $productName . "'>";
                 echo "<input type='text' name='image' value='" . $productDetails[0]['image'] . "'><br>";
                 echo "<input type='text' name='productPrice' value='" . $productDetails[0]['productPrice'] . "'><br>";
                 echo "<input type='text' name='productDescription' value='" . $productDetails[0]['productDescription'] . "'><br>";
                 echo "<input type='text' name='minQuantity' value='" . $productDetails[0]['minimumQuantity'] . "'><br>";
                 echo "<input type='text' name='maxQuantity' value='" . $productDetails[0]['maximumQuantity'] . "'><br>";
                 echo "<input type='text' name='amount' value='" . $productDetails[0]['amount'] . "'><br>";
+                echo "<input type='submit' name='submit' value='Update'>";
                 echo "</form>";
             } else {
                 echo "Product not found.";
             }
 
+            // Close connection
             $updateTable->db->closeConnection();
         } else {
             // Display product table
