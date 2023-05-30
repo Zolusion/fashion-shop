@@ -61,14 +61,31 @@
                     $productAmount = $_POST['productAmount'];
 
                     // Insert product
-                    $sql = "INSERT INTO products (productName, image, productPrice, productDescription, minimumQuantity, maximumQuantity, amount) VALUES ('$productName', '$image', '$productPrice', '$productDescription', '$minQuantity', '$maxQuantity', '$productAmount')";
+                    $sql = "INSERT INTO products (productName, image, productPrice, productDescription, minimumQuantity, maximumQuantity, amount) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-                    // Check if product created successfully
-                    if($this->conn->query($sql) === TRUE) {
-                        echo "<script>alert('Product created successfully!')</script>";
-                    } else {
-                        echo "Error: " . $sql . "<br>" . $this->conn->error;
+                    // Prepare the statement
+                    $stmt = $this->conn->prepare($sql);
+
+                    // Check if the preparation was successful
+                    if ($stmt === false) {
+                        echo "Error preparing statement: " . $this->conn->error;
+                        return;
                     }
+
+                    // Bind parameters
+                    $stmt->bind_param("ssdssdd", $productName, $image, $productPrice, $productDescription, $minQuantity, $maxQuantity, $productAmount);
+
+                    // Execute the statement
+                    if ($stmt->execute()) {
+                        echo "<br>";
+                        echo "Product created successfully";
+                    } else {
+                        echo "Error creating product: " . $stmt->error;
+                    }
+
+                    // Close the statement
+                    $stmt->close();
+
                 }
             }
 

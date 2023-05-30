@@ -207,7 +207,7 @@
             echo '</tbody>';
             echo '</table>';
         } else {
-            echo '<p style="padding: 5px; margin: 10px">There are no orders yet or check first if you did something wrong! <br> <a href="dashboard.php">Go back to dashboard</a></p>';
+            echo '<p style="padding: 5px; margin: 10px">There are no orders yet... <br> <a href="dashboard.php">Go back to dashboard</a></p>';
         }
     ?>
 
