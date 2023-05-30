@@ -45,7 +45,7 @@
                 return $products;
             }
         
-            // Delete product
+            // Update product
             public function updateProduct($productName, $data)
             {
                 $updates = array();
