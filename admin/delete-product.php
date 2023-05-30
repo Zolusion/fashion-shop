@@ -105,7 +105,7 @@
                     echo "<td>" . $product['minimumQuantity'] . "</td>";
                     echo "<td>" . $product['maximumQuantity'] . "</td>";
                     echo "<td>" . $product['amount'] . "</td>";
-                    echo "<td><a href='delete-product.php?productName=" . $product['productName'] . "'>Delete</a></td>";
+                    echo "<td><a href='delete-product.php?productName=" . $product['productName'] . "'><button type='button' class='btn btn-danger'>Delete</button></a></td>";
                     echo "</tr>";
                 }
 
