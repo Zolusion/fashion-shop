@@ -10,7 +10,6 @@
 <body>
     <div class="create">
         <h2>Update Customer</h2>
-        <br>
     </div>
 
     <?php
@@ -112,7 +111,7 @@
                     echo "<td>" . $customer['password'] . "</td>";
                     echo "<td>" . $customer['role'] . "</td>";
                     echo "<td>";
-                    echo "<a href='update-customer.php?customerEmail=" . $customer['customerEmail'] . "' class='btn btn-primary'>Update</a>";
+                    echo "<td><a href='update-customer.php?customerName=" . $customer['customerName'] . "'>Update</a></td>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -162,14 +161,14 @@
 
             // Check if customer exists
             if ($customerDetails) {
-                echo "<form action='update-customer.php?customerName=" . $customertName . "' method='POST'>";
-                echo "<input type='text' name='customerName' value='" . $customertName . "'>";
-                echo "<input type='text' name='customerEmail' value='" . $customerEmail . "'>";
-                echo "<input type='text' name='streetName' value='" . $streetName . "'>";
-                echo "<input type='text' name='cityName' value='" . $cityName . "'>";
-                echo "<input type='text' name='postalCode' value='" . $postalCode . "'>";
-                echo "<input type='text' name='password' value='" . $password . "'>";
-                echo "<input type='text' name='role' value='" . $role . "'>";
+                echo "<form action='update-customer.php?customerName=" . $customerName . "' method='POST'>";
+                echo "<input type='text' name='Name' value='" . $customerName . "'>";
+                echo "<input type='text' name='Email' value='" . $customerDetails[0]['customerEmail'] . "'><br>";
+                echo "<input type='text' name='streetName' value='" . $customerDetails[0]['streetName'] . "'><br>";
+                echo "<input type='text' name='City' value='" . $customerDetails[0]['cityName'] . "'><br>";
+                echo "<input type='text' name='Postal Code' value='" . $customerDetails[0]['postalCode'] . "'><br>";
+                echo "<input type='password' name='Password' value='" . $customerDetails[0]['password'] . "'><br>";
+                echo "<input type='text' name='Role' value='" . $customerDetails[0]['role'] . "'><br>";
                 echo "<input type='submit' name='submit' value='Update'>";
                 echo "</form>";
             } else {
