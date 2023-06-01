@@ -111,7 +111,7 @@
                     echo "<td>" . $customer['password'] . "</td>";
                     echo "<td>" . $customer['role'] . "</td>";
                     echo "<td>";
-                    echo "<td><a href='update-customer.php?customerName=" . $customer['customerName'] . "'>Update</a></td>";
+                    echo "<a href='update-customer.php?customerName=" . $customer['customerName'] . "' class='btn btn-primary'>Update</a>";
                     echo "</td>";
                     echo "</tr>";
                 }

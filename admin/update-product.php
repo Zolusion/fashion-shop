@@ -118,7 +118,9 @@
                     echo "<td>" . $product['minimumQuantity'] . "</td>";
                     echo "<td>" . $product['maximumQuantity'] . "</td>";
                     echo "<td>" . $product['amount'] . "</td>";
-                    echo "<td><a href='update-product.php?productName=" . $product['productName'] . "'>Update</a></td>";
+                    echo "<td>";
+                    echo "<a href='update-product.php?productName=" . $product['productName'] . "' class='btn btn-primary'>Update</a>";
+                    echo "</td>";
                     echo "</tr>";
                 }
 

@@ -86,38 +86,57 @@
             <h2>SHOP MORE FOR MEN</h2>
         </div>
         <div class="clothing-container">
-            <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/files/04-27-23Studio7_CB_SS_10-25-09_48_D2436_Black_6342_CM_360x.jpg?v=1683135120" alt="crochet">
-                <div>
-                    <h3>€17,95</h3>
-                    <h3>CROCHET</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
-            <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-17-23Studio7_TA_DJ_10-34-09_21_ZDF01V31O161_Chocolate_0211_DQ_360x.jpg?v=1681943384" alt="chocolate_sleeve">
-                <div>
-                    <h3>€19,95</h3>
-                    <h3>CHOCOLATE SLEEVE</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
-            <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-04-23CruelSummer_KJ_DJ_14-20-55_LOOK_4_5418_MP_WG_WG_PLUS_360x.jpg?v=1681967060" alt="strapsuit-jacket">
-                <div>
-                    <h3>€29,95</h3>
-                    <h3>STRAP SUIT JACKET</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
-            <div class="clothing-item">
-                <img src="https://cdn.shopify.com/s/files/1/0293/9277/products/04-04-23CruelSummer_KJ_DJ_14-20-55_LOOK_5_5449_MP_WG_360x.jpg?v=1681945311" alt="strapsuit-jacket-lime">
-                <div>
-                    <h3>€34,95</h3>
-                    <h3>STRAP SUIT JACKET LIME</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
+            <?php
+
+                class Database {
+
+                    private $servername;
+                    private $username;
+                    private $password;
+                    private $database;
+
+                    public function __construct($servername, $username, $password, $database) {
+                        $this->servername = $servername;
+                        $this->username = $username;
+                        $this->password = $password;
+                        $this->database = $database;
+                    }
+
+                }
+
+                $product1 = new Product(); 
+                $product1->getProducts();
+
+                class Product {
+
+                    public function getProducts() {
+                        // Establish a database connection
+                        $conn = mysqli_connect('localhost', 'root', '', 'fashion-shop');
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        
+                        // Get all the products from the database
+                        $sql = "SELECT * FROM products WHERE category = 1";
+                        $result = mysqli_query($conn, $sql);
+                    
+                        // Loop through the results and display them in the HTML
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<div class="clothing-item">';
+                                echo '<img src="' . $row['image'] . '" alt="' . $row['productName'] . '">';
+                                    echo '<div>';
+                                    echo '<h3>€' . $row['productPrice'] . '</h3>';
+                                    echo '<h3>' . $row['productName'] . '</h3>';
+                                    echo '<button type="submit">Add To Cart</button>';
+                                echo '</div>';
+                            echo '</div>';
+                    }
+                    
+                        // Close the database connection
+                        mysqli_close($conn);
+                    }
+                }
+            ?>
         </div>
     </main>
     <div id="countdown-timer">
@@ -182,43 +201,61 @@
         }, 1000); // Update the timer every 1 second
     </script>
     <main>
-    <div class="text">
+        <div class="text">
             <h2>SHOP MORE FOR WOMEN</h2>
         </div>
         <div class="clothing-container">
-            <div class="clothing-item">
-                <img src="http://localhost/fashionshop/images/high-rise-flare-jeans.jpg" alt="favorit-season">
-                <div>
-                    <h3>€44,95</h3>
-                    <h3>FAVORITE SEASON</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
-            <div class="clothing-item">
-                <img src="http://localhost/fashionshop/images/matching-sets.jpg" alt="endless-love">
-                <div>
-                    <h3>€23,95</h3>
-                    <h3>ENDLESS LOVE</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
-            <div class="clothing-item">
-                <img src="http://localhost/fashionshop/images/dresses.jpg" alt="midnight-dress">
-                <div>
-                    <h3>€19,95</h3>
-                    <h3>MIDNIGHT DRESS</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
-            <div class="clothing-item">
-                <img src="http://localhost/fashionshop/images/jumpsuits.jpg" alt="oceanbreeze">
-                <div>
-                    <h3>€29,95</h3>
-                    <h3>OCEANBREEZE</h3>
-                    <button type="submit">Add To Cart</button>
-                </div>
-            </div>
-        </div>
+            <?php
+
+                class Data {
+
+                    private $servername;
+                    private $username;
+                    private $password;
+                    private $database;
+
+                    public function __construct($servername, $username, $password, $database) {
+                        $this->servername = $servername;
+                        $this->username = $username;
+                        $this->password = $password;
+                        $this->database = $database;
+                    }
+
+                }
+
+                $product2 = new ProductWomen(); 
+                $product2->getProducts();
+
+                class ProductWomen {
+
+                    public function getProducts() {
+                        // Establish a database connection
+                        $conn = mysqli_connect('localhost', 'root', '', 'fashion-shop');
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        
+                        // Get all the products from the database
+                        $sql = "SELECT * FROM products WHERE category = 2";
+                        $result = mysqli_query($conn, $sql);
+                    
+                        // Loop through the results and display them in the HTML
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<div class="clothing-item">';
+                                echo '<img src="' . $row['image'] . '" alt="' . $row['productName'] . '">';
+                                    echo '<div>';
+                                    echo '<h3>€' . $row['productPrice'] . '</h3>';
+                                    echo '<h3>' . $row['productName'] . '</h3>';
+                                    echo '<button type="submit">Add To Cart</button>';
+                                echo '</div>';
+                            echo '</div>';
+                    }
+                    
+                        // Close the database connection
+                        mysqli_close($conn);
+                    }
+                }
+            ?>
     </main>
     <footer>
         <div class="categories">
