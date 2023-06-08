@@ -42,6 +42,7 @@
                         "minimumQuantity" => $row['minimumQuantity'],
                         "maximumQuantity" => $row['maximumQuantity'],
                         "amount" => $row['amount'],
+                        "category" => $row['category']
                         
                     );
                     // Push product to products array
@@ -78,6 +79,7 @@
                             <th>Minimum Quantity</th>
                             <th>Maximum Quantity</th>
                             <th>Amount</th>
+                            <th>Category</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -92,6 +94,7 @@
                     echo "<td>" . $product['minimumQuantity'] . "</td>";
                     echo "<td>" . $product['maximumQuantity'] . "</td>";
                     echo "<td>" . $product['amount'] . "</td>";
+                    echo "<td>" . $product['category'] . "</td>";
                     echo "</tr>";
                 }
                 echo "</tbody>

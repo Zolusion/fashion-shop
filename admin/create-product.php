@@ -45,6 +45,7 @@
                 echo "<input type='number' name='minQuantity' placeholder='Minimum Quantity' required>";
                 echo "<input type='number' name='maxQuantity' placeholder='Maximum Quantity' required>";
                 echo "<input type='number' name='productAmount' placeholder='Amount' required>";
+                echo "<input type='text' name='category' placeholder='Category' required>";
                 echo "<input type='submit' name='submit' value='Create Product'>";
                 echo "<br>";
                 echo "<a href='dashboard.php'>Back to dashboard</a>";
@@ -59,9 +60,10 @@
                     $minQuantity = $_POST['minQuantity'];
                     $maxQuantity = $_POST['maxQuantity'];
                     $productAmount = $_POST['productAmount'];
+                    $category = $_POST['category'];
 
                     // Insert product
-                    $sql = "INSERT INTO products (productName, image, productPrice, productDescription, minimumQuantity, maximumQuantity, amount) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    $sql = "INSERT INTO products (productName, image, productPrice, productDescription, minimumQuantity, maximumQuantity, amount, category) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                     // Prepare the statement
                     $stmt = $this->conn->prepare($sql);

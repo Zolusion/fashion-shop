@@ -103,6 +103,7 @@
                                 <th>Minimum Quantity</th>
                                 <th>Maximum Quantity</th>
                                 <th>Amount</th>
+                                <th>Category</th>
                                 <th>Action</th> 
                             </tr>
                         </thead>
@@ -118,6 +119,7 @@
                     echo "<td>" . $product['minimumQuantity'] . "</td>";
                     echo "<td>" . $product['maximumQuantity'] . "</td>";
                     echo "<td>" . $product['amount'] . "</td>";
+                    echo "<td>" . $product['category'] . "</td>";
                     echo "<td>";
                     echo "<a href='update-product.php?productName=" . $product['productName'] . "' class='btn btn-primary'>Update</a>";
                     echo "</td>";
@@ -154,7 +156,8 @@
                     "productDescription" => $_POST['productDescription'],
                     "minimumQuantity" => $_POST['minQuantity'],
                     "maximumQuantity" => $_POST['maxQuantity'],
-                    "amount" => $_POST['amount']
+                    "amount" => $_POST['amount'],
+                    "category" => $_POST['category']
                 );
 
                 $updateTable->updateProduct($productName, $data);

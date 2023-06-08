@@ -22,8 +22,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Icon -->
+    <link rel="icon" href="http://minesa.live/assets/images/minesa-hub.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Ninety's Nation</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -104,10 +106,10 @@
 
                 }
 
-                $product1 = new Product(); 
+                $product1 = new ProductMen(); 
                 $product1->getProducts();
 
-                class Product {
+                class ProductMen {
 
                     public function getProducts() {
                         // Establish a database connection
@@ -124,7 +126,7 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<div class="clothing-item">';
                                 echo '<img src="' . $row['image'] . '" alt="' . $row['productName'] . '">';
-                                    echo '<div>';
+                                echo '<div>';
                                     echo '<h3>€' . $row['productPrice'] . '</h3>';
                                     echo '<h3>' . $row['productName'] . '</h3>';
                                     echo '<button type="submit">Add To Cart</button>';
@@ -187,16 +189,12 @@
                             clearInterval();
                             return;
                         }
-
                         daysElement.innerText = days + ' Days';
                     }
-
                     hoursElement.innerText = hours + ' Hours';
                 }
-
                 minutesElement.innerText = minutes + ' Minutes';
             }
-
             secondsElement.innerText = seconds + ' Seconds';
         }, 1000); // Update the timer every 1 second
     </script>
@@ -243,7 +241,7 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<div class="clothing-item">';
                                 echo '<img src="' . $row['image'] . '" alt="' . $row['productName'] . '">';
-                                    echo '<div>';
+                                echo '<div>';
                                     echo '<h3>€' . $row['productPrice'] . '</h3>';
                                     echo '<h3>' . $row['productName'] . '</h3>';
                                     echo '<button type="submit">Add To Cart</button>';
