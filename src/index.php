@@ -92,11 +92,13 @@
 
                 class Database {
 
+                    // Properties
                     private $servername;
                     private $username;
                     private $password;
                     private $database;
 
+                    // Constructor
                     public function __construct($servername, $username, $password, $database) {
                         $this->servername = $servername;
                         $this->username = $username;
@@ -106,6 +108,7 @@
 
                 }
 
+                // Create a new object from the Database class
                 $product1 = new ProductMen(); 
                 $product1->getProducts();
 
@@ -207,11 +210,13 @@
 
                 class Data {
 
+                    // Establish a database connection
                     private $servername;
                     private $username;
                     private $password;
                     private $database;
 
+                    // Create a constructor
                     public function __construct($servername, $username, $password, $database) {
                         $this->servername = $servername;
                         $this->username = $username;
@@ -221,9 +226,11 @@
 
                 }
 
+                // Create a new object
                 $product2 = new ProductWomen(); 
                 $product2->getProducts();
 
+                // Create a class
                 class ProductWomen {
 
                     public function getProducts() {
